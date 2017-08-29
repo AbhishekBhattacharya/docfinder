@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+    <title>Specialization</title>
+    <style type="text/css">
+        .carousel {
+            padding-bottom: 25px
+        }
+
+        .carousel img {
+            padding-top: 20px;
+        }
+
+        .carousel h2 {
+            color: #0072b5;
+        }
+
+        .carousel h2 small {
+            color: #289bde
+        }
+
+        .carousel col-lg-4 p {
+            text-align: center;
+        }
+
+        #playground-container {
+            height: 500px;
+            overflow: hidden !important;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        body,
+        html {
+            height: 100%;
+            background-repeat: no-repeat;
+            background: url(https://i.ytimg.com/vi/4kfXjatgeEU/maxresdefault.jpg);
+            font-family: 'Oxygen', sans-serif;
+            background-size: cover;
+        }
+
+        .main {
+            margin: 50px 15px;
+        }
+
+        h1.title {
+            font-size: 50px;
+            font-family: 'Passion One', cursive;
+            font-weight: 400;
+        }
+
+        hr {
+            width: 10%;
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            margin-bottom: 15px;
+        }
+
+        input,
+        input::-webkit-input-placeholder {
+            font-size: 11px;
+            padding-top: 3px;
+        }
+
+        .main-login {
+            background-color: #fff;
+            /* shadows and rounded borders */
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-control {
+            height: auto!important;
+            padding: 8px 12px !important;
+            width: 95%;
+        }
+
+        #button {
+            border: 1px solid #ccc;
+            margin-top: 28px;
+            padding: 6px 12px;
+            color: #666;
+            text-shadow: 0 1px #fff;
+            cursor: pointer;
+            -moz-border-radius: 3px 3px;
+            -webkit-border-radius: 3px 3px;
+            border-radius: 3px 3px;
+            -moz-box-shadow: 0 1px #fff inset, 0 1px #ddd;
+            -webkit-box-shadow: 0 1px #fff inset, 0 1px #ddd;
+            box-shadow: 0 1px #fff inset, 0 1px #ddd;
+            background: #f5f5f5;
+            background: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #eeeeee));
+            background: -webkit-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+            background: -o-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+            background: -ms-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+            background: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
+        }
+
+        .main-center {
+            margin-top: 30px;
+            margin: 0 auto;
+            max-width: 400px;
+            padding: 10px 40px;
+            background: #009edf;
+            color: #FFF;
+            text-shadow: none;
+            -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
+            -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
+            box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
+        }
+
+        span.input-group-addon i {
+            color: #009edf;
+            font-size: 17px;
+        }
+
+        .login-button {
+            margin-top: 5px;
+        }
+
+        .login-register {
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .mytext {
+            width: 400px;
+            height: 100px;
+        }
+
+        .back {
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <table style="width:100%">
+        <tr>
+            <td>
+                <a href="./pat.html">
+            <img src="./images/back.png" alt="go back" style="width:80px;height:80px;border:0;">
+          </a>
+            </td>
+            <td>
+                <div class="row main">
+                    <div class="main-login main-center">
+                        <h1 align="center"><b>Doctor Specialization</b></h1>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group login-button ">
+                    <a type="button" id="button" align="right" class="btn btn-primary btn-lg btn-block login-button" onclick="logout();"><b>Logout</b></a>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <div class='container carousel'>
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="5"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="6"></li>
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner text-center" role="listbox">
+                            <div class="item active">
+                                <div class="col-lg-8 pull-right">
+                                    <img src="./images/derma.jpg" height="370px" width="750px">
+                                </div>
+                                <div class="col-lg-4">
+                                    <h2><b>Dermatologist</b><br>
+                                    </h2>
+                                    <p>
+                                        A dermatologist is the medical expert you should consult if you have any significant problem with your skin. Dermatology
+                                        is the science that is concerned with the diagnosis and treatment of diseases of
+                                        the skin, hair and nails.
+                                    </p>
+
+                                    <p>
+                                        <b>Fees</b> :-INR 500/-
+                                    </p>
+                                    <!-- <a class='btn btn-info pull-right' href="/article/show/sed-vel-lectus/9">
+                             <i class="fa fa-long-arrow-right"> </i></a> -->
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-lg-8 pull-right">
+                                    <img src="./images/pedia.jpg" height="370px" width="750px">
+                                </div>
+                                <div class="col-lg-4">
+                                    <h2><b>Pediatrician</b><br>
+                                    </h2>
+                                    <p>
+                                        Pediatricians are doctors who manage the health of your child, including physical, behavior, and mental health issues. They're
+                                        trained to diagnose and treat childhood illnesses, from minor health problems to
+                                        serious diseases.
+                                    </p>
+
+                                    <p>
+                                        <b>Fees</b> :-INR 500/-
+                                    </p>
+                                    <!-- <a class='btn btn-info pull-right' href="/article/show/sed-vel-lectus/9">
+                             <i class="fa fa-long-arrow-right"> </i></a> -->
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="col-lg-8 pull-right">
+                                    <img src="./images/gyne.jpg" height="370px" width="750px">
+                                </div>
+                                <div class="col-lg-4">
+                                    <h2><b>Gynecologist</b><br>
+                                    </h2>
+                                    <p>
+                                        Gynaecology or gynecology (see spelling differences) is the medical practice dealing with the health of the female reproductive
+                                        systems (vagina, uterus, and ovaries) and the breasts. Literally, outside medicine,
+                                        the term means "the science of women".
+                                    </p>
+                                    <p>
+                                        <b>Fees</b> :-INR 500/-
+                                    </p>
+                                    <!-- <a class='btn btn-info pull-right' href="/article/show/sed-vel-lectus/9">
+                             <i class="fa fa-long-arrow-right"> </i></a> -->
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-lg-8 pull-right">
+                                    <img src="./images/oph.jpg" height="370px" width="750px">
+                                </div>
+                                <div class="col-lg-4">
+                                    <h2><b>Opthalmologist</b><br>
+                                    </h2>
+                                    <p>
+                                        An ophthalmologist is a doctor whose specialty is diseases and conditions of the eyes, especially things that relate to vision.
+                                        They are the doctors who examine your eyes and writes the prescription for your contact
+                                        lenses.
+                                    </p>
+                                    <p>
+                                        <b>Fees</b> :-INR 500/-
+                                    </p>
+                                    <!-- <a class='btn btn-info pull-right' href="/article/show/sed-vel-lectus/9">
+                             <i class="fa fa-long-arrow-right"> </i></a> -->
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="col-lg-8 pull-right">
+                                    <img src="./images/psy.jpg" height="370px" width="750px">
+                                </div>
+                                <div class="col-lg-4">
+                                    <h2><b>Psychiatrist</b><br>
+                                    </h2>
+                                    <p>
+                                        A physiatrist is a medical doctor or doctor of osteopathic medicine who specializes in Physical Medicine and Rehabilitation
+                                        (also called PM&R physicians). Physiatrists diagnose and treat both acute pain and
+                                        chronic pain and specialize in a wide variety of nonsurgical treatments for the musculoskeletal
+                                        system.
+                                    </p>
+                                    <p>
+                                        <b>Fees</b> :-INR 500/-
+                                    </p>
+                                    <!-- <a class='btn btn-info pull-right' href="/article/show/sed-vel-lectus/9">
+                         <i class="fa fa-long-arrow-right"> </i></a> -->
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="col-lg-8 pull-right">
+                                    <img src="./images/dent.jpg" height="370px" width="750px">
+                                </div>
+                                <div class="col-lg-4">
+                                    <h2><b>Dentist</b><br>
+                                    </h2>
+                                    <p>
+                                        A licensed practitioner who is skilled in the prevention, diagnosis, and treatment of diseases, injuries, and malformations
+                                        of the teeth, jaws, and mouth and who makes and inserts false teeth.
+                                    </p>
+                                    <p>
+                                        <b>Fees</b> :-INR 500/-
+                                    </p>
+                                    <!-- <a class='btn btn-info pull-right' href="/article/show/sed-vel-lectus/9">
+                         <i class="fa fa-long-arrow-right"> </i></a> -->
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-lg-8 pull-right">
+                                    <img src="./images/cardio.jpg" height="370px" width="750px">
+                                </div>
+                                <div class="col-lg-4">
+                                    <h2><b>Cardiologist</b><br>
+                                    </h2>
+                                    <p>
+                                        A cardiologist is a heart doctor. He or she is the one to visit if you feel a tightness in your chest and shortness of breath.
+                                    </p>
+                                    <p>
+                                        One would see a cardiologist if he or she had which of the following symptoms?
+                                        <ul>
+                                            <li>an irregular heartbeat</li>
+                                            <li>slurred speech</li>
+                                            <li>a stuffy nose</li>
+                                        </ul>
+                                    </p>
+                                    <p>
+                                        <b>Fees</b> :-INR 500/-
+                                    </p>
+                                    <!-- <a class='btn btn-info pull-right' href="/article/show/sed-vel-lectus/9">
+                             <i class="fa fa-long-arrow-right"> </i></a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                 <span class="sr-only">Previous</span>
+             </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                 <span class="sr-only">Next</span>
+             </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <script src="./main.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<!-- Latest compiled and minified CSS -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<!-- Website Font style -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<!-- Google Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+	<title>Patient Details</title>
+	<style type="text/css">
+		#playground-container {
+			height: 500px;
+			overflow: hidden !important;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		body,
+		html {
+			height: 100%;
+			background-repeat: no-repeat;
+			background: url(https://i.ytimg.com/vi/4kfXjatgeEU/maxresdefault.jpg);
+			font-family: 'Oxygen', sans-serif;
+			background-size: cover;
+		}
+
+		.container {
+			margin: 55px 0px;
+		}
+
+		.main {
+			margin: 0 auto;
+			width: 960px;
+		}
+
+		h1.title {
+			font-size: 50px;
+			font-family: 'Passion One', cursive;
+			font-weight: 400;
+		}
+
+		hr {
+			width: 10%;
+			color: #fff;
+		}
+
+		.form-group {
+			margin-bottom: 15px;
+			padding-top: 14px;
+		}
+
+		label {
+			margin-bottom: 15px;
+		}
+
+		input,
+		input::-webkit-input-placeholder {
+			font-size: 11px;
+			padding-top: 3px;
+		}
+
+		.main-login {
+			background-color: #fff;
+			/* shadows and rounded borders */
+			-moz-border-radius: 2px;
+			-webkit-border-radius: 2px;
+			border-radius: 2px;
+			-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+			-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+			box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		}
+
+		.form-control {
+			height: auto!important;
+			padding: 8px 12px !important;
+			width: 95%;
+		}
+
+		#button {
+			border: 1px solid #ccc;
+			margin-top: 28px;
+			padding: 6px 12px;
+			color: #666;
+			text-shadow: 0 1px #fff;
+			cursor: pointer;
+			-moz-border-radius: 3px 3px;
+			-webkit-border-radius: 3px 3px;
+			border-radius: 3px 3px;
+			-moz-box-shadow: 0 1px #fff inset, 0 1px #ddd;
+			-webkit-box-shadow: 0 1px #fff inset, 0 1px #ddd;
+			box-shadow: 0 1px #fff inset, 0 1px #ddd;
+			background: #f5f5f5;
+			background: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #eeeeee));
+			background: -webkit-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+			background: -o-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+			background: -ms-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+			background: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
+		}
+
+		.main-center {
+			margin: 0px 20px 0px 0px;
+			max-width: 400px;
+			padding: 10px 28px;
+			background: #009edf;
+			color: #FFF;
+			text-shadow: none;
+			-webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
+			-moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
+			box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
+		}
+
+		span.input-group-addon i {
+			color: #009edf;
+			font-size: 17px;
+		}
+
+		.login-button {
+			margin-top: 5px;
+		}
+
+		.login-register {
+			font-size: 11px;
+			text-align: center;
+		}
+
+		.mytext {
+			width: 400px;
+			height: 100px;
+		}
+
+		#page_loader {
+			margin: 75px 0 0px;
+			text-align: center;
+		}
+
+		.column {
+			float: left;
+		}
+
+		.user_details {
+			padding-bottom: 12px;
+		}
+
+		.clear_fix {
+			clear: both;
+		}
+
+		#recent_bookings_table {
+			font-size: 14px;
+		}
+
+		#recent_bookings_table a {
+			color: #505050;
+		}
+
+		#recent_bookings_table a:hover {
+			color: #333;
+		}
+
+		table {
+			margin-bottom: 2.5rem;
+		}
+
+		th,
+		td {
+			padding: 12px 15px;
+			text-align: left;
+			border-bottom: 1px solid #E1E1E1;
+		}
+
+		th:first-child,
+		td:first-child {
+			padding-left: 0;
+		}
+
+		th:last-child,
+		td:last-child {
+			padding-right: 0;
+		}
+	</style>
+</head>
+
+<body onload="getUserInfo();getBookingDetails();">
+	<div class="form-group login-button">
+		<a type="button" id="button" align="right" class="btn btn-primary btn-lg btn-block login-button" onclick="logout();"><b>Logout</b></a>
+	</div>
+	<div class="container">
+		<div class="row main" id="page_loader">
+			<img src="/images/loading.svg" alt="Loading..." />
+		</div>
+		<div class="row main" id="user_main" style="display:none;">
+			<div class="column">
+				<div class="main-login main-center">
+					<h1 align="center" id="user_display">Welcome</h1>
+					<div class="user_details"><b>Age: </b><span id="user_age"></span></div>
+					<div class="user_details"><b>Sex: </b><span id="user_sex"></span></div>
+					<div class="user_details"><b>Location: </b><span id="user_location"></span></div>
+				</div>
+				<div class="main-login main-center">
+					<h1 align="center"><b>Book Appointment</b></h1>
+					<div>
+						<b>Note: </b><span>Book before the timeslot mentioned, else your booking will be marked as invalid!</span>
+					</div>
+					<hr style="width: 100%;border: 0;border-bottom: 1px solid #ccc;" />
+					<form class="" method="post" action="#">
+						<div class="form-group">
+							<label class="cols-sm-2 control-label">Please explain your health issue<span></span></label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+
+									<input type="text" id="healthissue" name="text_name" class="mytext" placeholder="eg. Stomach pain, headache, sneezing" />
+									<span></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Preferred Time</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="radio" name="time" id="slot1" value="1" onclick="uncheckSpec();"> 10:00 AM -12:00 PM
+									<input type="radio" name="time" id="slot2" value="2" onclick="uncheckSpec();"> 5:00 AM -7:00 PM
+
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Specialization</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="radio" name="spec" id="dermatologist" value="Dermatologist" onclick="findDoctor(this);">Dermatologist
+									<input type="radio" name="spec" id="pediatrician" value="Pediatrician" onclick="findDoctor(this);"> Pediatrician
+									<input type="radio" name="spec" id="gynecologist" value="Gynecologist" onclick="findDoctor(this);"> Gynecologist
+									<input type="radio" name="spec" id="opth" value="Opthalomogist" onclick="findDoctor(this);"> Opthalomogist
+									<input type="radio" name="spec" id="dentist" value="Dentist" onclick="findDoctor(this);"> Dentist
+									<input type="radio" name="spec" id="cardio" value="Cardiologist" onclick="findDoctor(this);"> Cardiologist
+									</select>
+									<br><br>
+									<span>
+                    <a type="button" id="button"  href="/spec.html" target="_blank" class="btn btn-primary btn-lg btn-block login-button">Know More</a>
+                  </span>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="doctor" class="cols-sm-2 control-label">Doctor</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<select id="doctor" name="doctor">
+										<option>--select--</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="form-group">
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<label class="password">Do you want to list your symptoms and health issues?<span>*</span></label>
+                  <ul>
+                    <li>
+                      <input type="radio" id="a-option" name="selector1">
+                      <label for="a-option">Yes </label>
+                      <div class="check"></div>
+                    </li>
+                    <li>
+								<input type="radio" id="b-option" name="selector1">
+                      <label for="b-option">No</label>
+                      <div class="check"><div class="inside"></div></div>
+                    </li>
+                  </ul>
+								</div>
+							</div>
+						</div> -->
+
+						<div class="form-group ">
+							<a type="button" id="button" class="btn btn-primary btn-lg btn-block login-button" onclick="patientdetails()">Book Appointment</a>
+						</div>
+						<!-- change the href to the appointment page -->
+
+						<!-- -->
+
+						<!-- <div class="form-group ">
+							<a href="./login1.html" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</a>
+						</div>
+						<div class="form-group ">
+							<a href="./login1.html" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Login instead</a>
+						</div> -->
+					</form>
+				</div>
+				<!-- End of appointment -->
+			</div>
+			<!-- End of User Column -->
+			<div class="column" id="recent_bookings">
+				<div class="main-login main-center">
+					<h3 align="center">Recent Bookings</h3>
+					<div id="recent_bookings_table">
+						<!-- Recent bookings table -->
+					</div>
+				</div>
+			</div>
+			<!-- End of Recent Bookings Column -->
+		</div>
+		<div class="clear_fix"></div>
+		<!-- End of User Main -->
+	</div>
+
+	<script src="./main.js"></script>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</body>
+
+</html>

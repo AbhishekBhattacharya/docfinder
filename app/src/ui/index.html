@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<!-- Latest compiled and minified CSS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<!-- Website CSS style -->
+
+
+	<!-- Website Font style -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+	<!-- Google Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+
+	<!-- Website CSS style -->
+	<!-- Website Font style -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<title>Doc Finder</title>
+	<link href="./style.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="container">
+		<div class="row main">
+			<div class="main-login main-center">
+				<h1 align="center"><b>Doc Finder</b></h1>
+				<h3 align="center"><i>Making Patients Life Easy</i></h3>
+				<form class="" method="post" action="#">
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Your Name</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="age" class="cols-sm-2 control-label">Age</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="number" class="form-control" name="age" id="age" placeholder="Enter your Age" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="gender" class="cols-sm-2 control-label">Sex</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<!-- <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span> -->
+								<input type="radio" name="gender" id="male" value="Male" checked> Male
+								<input type="radio" name="gender" id="female" value="Female"> Female
+								<input type="radio" name="gender" id="others" value="Other"> Other
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="loc" class="cols-sm-2 control-label">Location</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<!-- <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span> -->
+								<input type="radio" name="loc" id="delhi" value="New Delhi" checked> New Delhi
+								<input type="radio" name="loc" id="mumbai" value="Mumbai"> Mumbai
+								<input type="radio" name="loc" id="bengaluru" value="Bengaluru"> Bengaluru
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="email" class="cols-sm-2 control-label">Your Email</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="username" class="cols-sm-2 control-label">Username</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="password" class="cols-sm-2 control-label">Password</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+								<input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+								<input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group ">
+						<a href="#" name="regbutton" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button"
+						    onclick="signup()"><b>Register</b></a>
+					</div>
+					<div class="form-group ">
+						<a href="./login.html" name="login" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button"><b>Login instead</b></a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+	<script src="./main.js"></script>
+</body>
+
+</html>
