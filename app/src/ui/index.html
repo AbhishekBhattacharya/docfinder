@@ -34,14 +34,14 @@
 			<div class="main-login main-center">
 				<h1 align="center"><b>Doc Finder</b></h1>
 				<h3 align="center"><i>Making Patients Life Easy</i></h3>
-				<form id="signup_form">
+				<form id="signup_form" class="auth_form">
 
 					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Your Name</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" required autofocus/>
+								<input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" minlength="3" required autofocus/>
 							</div>
 						</div>
 					</div>
@@ -85,7 +85,7 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" required/>
+								<input type="email" class="form-control" name="email" id="email" placeholder="Enter your Email" required/>
 							</div>
 						</div>
 					</div>
@@ -95,7 +95,7 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username" required/>
+								<input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username" minlength="3" required/>
 							</div>
 						</div>
 					</div>
@@ -105,7 +105,7 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-								<input type="password" class="form-control" name="password" id="password" placeholder="Password" required/>
+								<input type="password" class="form-control" name="password" id="password" placeholder="Password" minlength="8" required/>
 							</div>
 						</div>
 					</div>
