@@ -34,14 +34,14 @@
 			<div class="main-login main-center">
 				<h1 align="center"><b>Doc Finder</b></h1>
 				<h3 align="center"><i>Making Patients Life Easy</i></h3>
-				<form class="" method="post" action="#">
+				<form id="signup_form">
 
 					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Your Name</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" />
+								<input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" required autofocus/>
 							</div>
 						</div>
 					</div>
@@ -51,7 +51,7 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-								<input type="number" class="form-control" name="age" id="age" placeholder="Enter your Age" />
+								<input type="number" class="form-control" name="age" id="age" placeholder="Enter your Age" required/>
 							</div>
 						</div>
 					</div>
@@ -85,7 +85,7 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
+								<input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" required/>
 							</div>
 						</div>
 					</div>
@@ -95,7 +95,7 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username" />
+								<input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username" required/>
 							</div>
 						</div>
 					</div>
@@ -105,7 +105,7 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-								<input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" />
+								<input type="password" class="form-control" name="password" id="password" placeholder="Password" required/>
 							</div>
 						</div>
 					</div>
@@ -115,14 +115,13 @@
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-								<input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" />
+								<input type="password" class="form-control" name="confirm" id="confirm_password" placeholder="Confirm Password" required/>
 							</div>
 						</div>
 					</div>
 
 					<div class="form-group ">
-						<a href="#" name="regbutton" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button"
-						    onclick="signup()"><b>Register</b></a>
+						<input type="submit" value="Sign Up" name="regbutton" id="signup_button" class="btn btn-primary btn-lg btn-block login-button"/>
 					</div>
 					<div class="form-group ">
 						<a href="./login.html" name="login" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button"><b>Login instead</b></a>
@@ -131,6 +130,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id="feedback_box" class="hidden">This is some error</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
