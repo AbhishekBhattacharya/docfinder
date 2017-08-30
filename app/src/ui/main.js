@@ -6,14 +6,83 @@ var auth_url = "https://auth.action94.hasura-app.io"; //"http://auth.c100.hasura
 var user_id = 0;
 var user_location = "";
 
-function signup() {
+var f_box = $('#feedback_box');
+
+var s_name = $('#name');
+s_name.on('blur', () => {
+    if (s_name.val().length < 3) {
+        s_name.addClass('i-error');
+    } else {
+        s_name.removeClass('i-error');
+    } 
+});
+
+var s_age = $('#age');
+s_age.on('blur', () => {
+    if (s_age.val() < 14 || s_age.val() > 110) {
+        s_age.addClass('i-error');
+    } else {
+        s_age.removeClass('i-error');
+    } 
+});
+
+var s_uname = $('#username');
+s_uname.on('blur', () => {
+    if (s_uname.val().length < 3) {
+        s_uname.addClass('i-error');
+    } else {
+        s_uname.removeClass('i-error');
+    } 
+});
+
+var s_email = $('#email');
+s_email.on('blur', () => {
+    if (!s_email.val().match(/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/)) {
+        s_email.addClass('i-error');
+    } else {
+        s_email.removeClass('i-error');
+    } 
+});
+
+var s_pass = $('#password');
+s_pass.on('blur', () => {
+    if(!s_pass.val().match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)) {
+        s_pass.addClass('i-error');
+    } else {
+        s_pass.removeClass('i-error');
+    }
+});
+
+var s_rpass = $('#confirm_password');
+s_rpass.on('blur', () => {
+    if (s_pass.val() !== s_rpass.val()) {
+        s_rpass.addClass('i-error');
+    } else {
+        s_rpass.removeClass('i-error');
+    }
+});
+
+$('#signup_form > input').on('focus', () => {
+    console.log("Clear feedback");
+    f_box.removeClass('success error');
+});
+
+var signup_btn = $('#signup_button');
+var s_prval = signup_btn.val();
+$('#signup_form').on('submit', (e) => {
+    e.preventDefault();
+    signup_btn.prop("disabled", true);
+    signup_btn.val('Signing up ...');
+    
     var uname = $('#username').val();
     var name = $('#name').val();
     var age = $('#age').val();
     var sex;
     var location;
     var pass = $('#password').val();
+    var r_pass = $('#confirm_password').val();
     var email = $('#email').val();
+    
     //Sex 
     if (document.getElementById('male').checked) {
         sex = document.getElementById('male').value;
@@ -22,6 +91,7 @@ function signup() {
     } else if (document.getElementById('others').checked) {
         sex = document.getElementById('others').value;
     }
+    
     //Location
     if (document.getElementById('delhi').checked) {
         location = document.getElementById('delhi').value;
@@ -31,11 +101,6 @@ function signup() {
         location = document.getElementById('bengaluru').value;
     }
 
-    //Note: validate all fields
-
-    if (pass.length < 8) {
-        alert('Password must be atleast 8 characters long');
-    }
     //ajax request
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
@@ -46,17 +111,21 @@ function signup() {
                 auth_token = x.auth_token;
                 hasura_id = x.hasura_id;
 
-                request = new XMLHttpRequest();
+                let request = new XMLHttpRequest();
                 request.onreadystatechange = function () {
                     if (request.readyState === XMLHttpRequest.DONE) {
                         if (request.status === 200) {
-                            alert('Account Created successfully! You can login now');
+                            f_box.removeClass('hidden error').addClass('success');
+                            f_box.html("Signup successful :<br>" + request.responseText["message"]);
                             setTimeout(function () {
                                 window.location = "/login.html";
                             }, 500);
                         } else {
-                            alert('Something went wrong on second request');
+                            f_box.removeClass('hidden success').addClass('error');
+                            f_box.html("Error : " + JSON.parse(request.responseText)["message"]);
                             console.log(this.responseText);
+                            signup_btn.prop("disabled", false);
+                            signup_btn.val(s_prval);
                         }
                     }
                 }; //second request
@@ -81,7 +150,10 @@ function signup() {
                        alert('Username/Password is incorrect');
                    }*/
             else {
-                alert('Something went wrong on the server' + this.responseText);
+                f_box.removeClass('hidden success').addClass('error');
+                f_box.html("Signup Error : " + JSON.parse(request.responseText)["message"]);
+                signup_btn.prop("disabled", false);
+                signup_btn.val(s_prval);
             }
         }
     };
@@ -91,7 +163,7 @@ function signup() {
         username: uname,
         password: pass
     }));
-}
+});
 
 
 function toNumber(str) {

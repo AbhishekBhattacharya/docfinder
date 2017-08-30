@@ -8,7 +8,10 @@ body, html{
  	background-repeat: no-repeat;
  	background:url(https://i.ytimg.com/vi/4kfXjatgeEU/maxresdefault.jpg);
  	font-family: 'Oxygen', sans-serif;
-	    background-size: cover;
+    background-size: cover;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
 .main{
@@ -106,3 +109,36 @@ span.input-group-addon i {
 	text-align: center;
 }
 
+#feedback_box{
+    position: fixed;
+    top: 0;
+    width: 82%;
+    max-width: 401px;
+    height: 50px;
+    border-radius: 2px;
+    z-index: 1000;
+    color: #fff;
+    font-family: monospace;
+    padding: 3px 1em;
+    text-align: center;
+    font-size:14px;
+}
+.hidden{
+    display:none;
+}
+.success{
+    box-shadow: 0 0 10px #888;
+    background-color:#02b875 !important;
+}
+.error{
+    box-shadow: 0 0 10px #888;
+    background-color: #e47979 !important;
+}
+
+.i-error{
+    border-color: red;
+    background: #ffbebe;
+}
+.i-success {
+    
+}
