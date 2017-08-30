@@ -116,7 +116,7 @@ $('#signup_form').on('submit', (e) => {
                     if (request.readyState === XMLHttpRequest.DONE) {
                         if (request.status === 200) {
                             f_box.removeClass('hidden error').addClass('success');
-                            f_box.html("Signup successful :<br>" + request.responseText["message"]);
+                            f_box.html("Signup successful , You can Login Now!");
                             setTimeout(function () {
                                 window.location = "/login.html";
                             }, 500);
