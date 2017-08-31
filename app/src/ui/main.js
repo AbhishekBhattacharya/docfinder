@@ -6,6 +6,7 @@ var auth_url = "https://auth.action94.hasura-app.io"; //"http://auth.c100.hasura
 var user_id = 0;
 var user_location = "";
 
+//validation
 var f_box = $('#feedback_box');
 
 var s_name = $('#name');
@@ -14,7 +15,7 @@ s_name.on('blur', () => {
         s_name.addClass('i-error');
     } else {
         s_name.removeClass('i-error');
-    } 
+    }
 });
 
 var s_age = $('#age');
@@ -23,7 +24,7 @@ s_age.on('blur', () => {
         s_age.addClass('i-error');
     } else {
         s_age.removeClass('i-error');
-    } 
+    }
 });
 
 var s_uname = $('#username');
@@ -32,7 +33,7 @@ s_uname.on('blur', () => {
         s_uname.addClass('i-error');
     } else {
         s_uname.removeClass('i-error');
-    } 
+    }
 });
 
 var s_email = $('#email');
@@ -41,12 +42,12 @@ s_email.on('blur', () => {
         s_email.addClass('i-error');
     } else {
         s_email.removeClass('i-error');
-    } 
+    }
 });
 
 var s_pass = $('#password');
 s_pass.on('blur', () => {
-    if(!s_pass.val().match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)) {
+    if (s_pass.val().length < 8) {
         s_pass.addClass('i-error');
     } else {
         s_pass.removeClass('i-error');
@@ -62,18 +63,20 @@ s_rpass.on('blur', () => {
     }
 });
 
-$('#signup_form > input').on('focus', () => {
-    console.log("Clear feedback");
+$('.auth_form input').on('focus', () => {
+    //console.log("Clear feedback");
     f_box.removeClass('success error');
+    f_box.addClass("hidden");
 });
 
+//signup
 var signup_btn = $('#signup_button');
 var s_prval = signup_btn.val();
 $('#signup_form').on('submit', (e) => {
     e.preventDefault();
     signup_btn.prop("disabled", true);
     signup_btn.val('Signing up ...');
-    
+
     var uname = $('#username').val();
     var name = $('#name').val();
     var age = $('#age').val();
@@ -82,7 +85,7 @@ $('#signup_form').on('submit', (e) => {
     var pass = $('#password').val();
     var r_pass = $('#confirm_password').val();
     var email = $('#email').val();
-    
+
     //Sex 
     if (document.getElementById('male').checked) {
         sex = document.getElementById('male').value;
@@ -91,7 +94,7 @@ $('#signup_form').on('submit', (e) => {
     } else if (document.getElementById('others').checked) {
         sex = document.getElementById('others').value;
     }
-    
+
     //Location
     if (document.getElementById('delhi').checked) {
         location = document.getElementById('delhi').value;
@@ -116,14 +119,15 @@ $('#signup_form').on('submit', (e) => {
                     if (request.readyState === XMLHttpRequest.DONE) {
                         if (request.status === 200) {
                             f_box.removeClass('hidden error').addClass('success');
-                            f_box.html("Signup successful , You can Login Now!");
+                            f_box.html("Signup successful : Redirecting to Login page!");
+                            //console.log(request.responseText);
                             setTimeout(function () {
                                 window.location = "/login.html";
-                            }, 500);
+                            }, 1000);
                         } else {
                             f_box.removeClass('hidden success').addClass('error');
                             f_box.html("Error : " + JSON.parse(request.responseText)["message"]);
-                            console.log(this.responseText);
+                            //console.log(this.responseText);
                             signup_btn.prop("disabled", false);
                             signup_btn.val(s_prval);
                         }
@@ -145,13 +149,19 @@ $('#signup_form').on('submit', (e) => {
                         }]
                     }
                 }));
-            }
-            /*else if(request.status === 403){
-                       alert('Username/Password is incorrect');
-                   }*/
-            else {
+            } else {
+                var error = JSON.parse(request.responseText)["message"];
+                if (request.status === 409) {
+                    if (error.indexOf("username") !== -1) {
+                        error = "Username already exists!";
+                        s_uname.focus();
+                    } else if (error.indexOf("email") !== -1) {
+                        error = "Email already exists!";
+                        s_email.focus();
+                    }
+                }
                 f_box.removeClass('hidden success').addClass('error');
-                f_box.html("Signup Error : " + JSON.parse(request.responseText)["message"]);
+                f_box.html("Signup Error : " + error);
                 signup_btn.prop("disabled", false);
                 signup_btn.val(s_prval);
             }
@@ -161,7 +171,8 @@ $('#signup_form').on('submit', (e) => {
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(JSON.stringify({
         username: uname,
-        password: pass
+        password: pass,
+        email: email
     }));
 });
 
@@ -203,16 +214,17 @@ var delete_cookie = function (name) {
     //console.log("cookie deleted: "+name);
 };
 
-
-
-function login() {
+//Login
+var login_btn = $('#login_button');
+var l_prval = login_btn.val();
+$('#login_form').submit(function (e) {
+    e.preventDefault();
+    login_btn.prop("disabled", true);
+    login_btn.val('Logging In ...');
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if (request.readyState === XMLHttpRequest.DONE) {
             if (request.status === 200) {
-                //alert('Logged in successfully');
-
-
                 var x = JSON.parse(this.responseText);
                 createCookie('auth_token', x.auth_token);
                 auth_token = readCookie('auth_token');
@@ -220,18 +232,24 @@ function login() {
                 hasura_id = readCookie('hasura_id');
                 hasura_id_int = toNumber(hasura_id);
                 createCookie('login', "yes");
-                alert('Logged In successfully');
-                window.location = "/pat.html";
-            } else if (request.status === 403) {
-                alert('Username/Password is incorrect');
-            } else if (request.status === 500) {
-                alert('Something went wrong on the server');
-                //console.log("login:"+auth_token+":"+hasura_id);
+                f_box.removeClass('hidden error').addClass('success');
+                f_box.html("Logged In successfully : Redirecting...");
+                //console.log(request.responseText);
+                setTimeout(function () {
+                    window.location = "/pat.html";
+                }, 1000);
+            } else {
+                error = "";
+                if (request.status === 403) {
+                    error = "Username/Password is incorrect!";
+                } else if (request.status === 500) {
+                    error = "Something went wrong on the server";
+                }
+                f_box.removeClass('hidden success').addClass('error');
+                f_box.html("Login Error : " + error);
+                login_btn.prop("disabled", false);
+                login_btn.val(l_prval);
             }
-            /*else{
-            var y =JSON.parse(this.responseText);
-            alert('Something went wrong on server :(' + y);
-        }*/
         }
     };
     username = $('#username').val();
@@ -239,14 +257,11 @@ function login() {
     request.open('POST', auth_url + '/login', true);
     request.withCredentials = true;
     request.setRequestHeader('Content-Type', 'application/json');
-    request.withCredentials = true;
-
     request.send(JSON.stringify({
         username: username,
         password: password
     }));
-    //document.getElementById("login_btn").value="Logging-in...";
-}
+});
 
 //get user info
 function getUserInfo() {
@@ -377,7 +392,7 @@ function findDoctor(elem) {
     }
 }
 
-function uncheckSpec(){
+function uncheckSpec() {
     $('input[name=spec]').removeAttr("checked");
 }
 
@@ -517,13 +532,13 @@ function getDoctorDetails() {
                 var result = JSON.parse(this.responseText);
                 //console.log(result);
                 if (result.length >= 1) {
-                    document.getElementById("doctor_details").innerHTML="<table><tr><td><b>Name:</b></td><td>"+result[0].name+"</td></tr><tr><td><b>Designation:</b></td><td>"+result[0].designation+"</td></tr><tr><td><b>Experience:</b></td><td>"+result[0].experience+"year(s)</td></tr><tr><td><b>Available Time:</b></td><td>"+result[0].doc_available_time.range+"</td></tr><tr><td><b>Location:</b></td><td>"+result[0].doc_location+"</td></tr><tr><td><b>Specialization:</b></td><td>"+result[0].doc_specialization+"</td></tr></table>";
+                    document.getElementById("doctor_details").innerHTML = "<table><tr><td><b>Name:</b></td><td>" + result[0].name + "</td></tr><tr><td><b>Designation:</b></td><td>" + result[0].designation + "</td></tr><tr><td><b>Experience:</b></td><td>" + result[0].experience + "year(s)</td></tr><tr><td><b>Available Time:</b></td><td>" + result[0].doc_available_time.range + "</td></tr><tr><td><b>Location:</b></td><td>" + result[0].doc_location + "</td></tr><tr><td><b>Specialization:</b></td><td>" + result[0].doc_specialization + "</td></tr></table>";
                     document.getElementById("page_loader").style.display = "none";
                     document.getElementById("doctor_main").style.display = "block";
                 } else {
                     document.getElementById("page_loader").style.display = "none";
                     document.getElementById("doctor_main").style.display = "block";
-                    document.getElementById("doctor_details").innerHTML="Sorry! Not found!";
+                    document.getElementById("doctor_details").innerHTML = "Sorry! Not found!";
                 }
             } else {
                 alert('Error! Try again!');
